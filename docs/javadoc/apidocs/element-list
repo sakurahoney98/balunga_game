@@ -1,0 +1,9 @@
+com.sakura.balunga.game
+com.sakura.balunga.game.controller
+com.sakura.balunga.game.enumerator
+com.sakura.balunga.game.facade
+com.sakura.balunga.game.factory
+com.sakura.balunga.game.model
+com.sakura.balunga.game.repository
+com.sakura.balunga.game.service
+com.sakura.balunga.game.util

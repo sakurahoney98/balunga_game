@@ -1,0 +1,441 @@
+
+
+/**
+ * Organiza o conjunto de cartas que aparece no centro da tela e será distribuida
+ * para os jogadores.
+ * 
+ * @returns {void}
+ */
+function montarCava() {
+	const params = new URLSearchParams(window.location.search);
+	let numeroJogadores = parseInt(params.get('jogadores'), 10);
+	const mesa = document.querySelector('.mesa__centro-cartas');
+	if (mesa) {
+		const quantidadeMonte = 8 * numeroJogadores;
+
+		for (let i = 0; i < quantidadeMonte; i++) {
+			const img = document.createElement('img');
+			img.src = './images/fundo-carta.png';
+			img.classList.add('mesa__centro-cartas-monte');
+			img.id = 'carta-monte-' + (i + 1);
+			mesa.appendChild(img);
+		}
+
+		setTimeout(() => {
+			distribuirCartas();
+		}, 1000)
+	} else {
+		console.error('Não foi possível capturar o elemento ".mesa__centro-cartas"');
+	}
+
+
+
+}
+
+/**
+ * Distribui as cartas entre os jogadores, saindo do centro e indo para o box de cada jogador.
+ * Ao final, o elemento é removido da tela.
+ * 
+ * @returns {void}
+ */
+function distribuirCartas() {
+
+	// Capturando a posição do box de cada jogador
+	const destinoJogadorPrincipal = document.querySelector('#jogador-principal-cartas') ? document.querySelector('#jogador-principal-cartas').getBoundingClientRect().top + 50 : null;
+	const destinoJogadorEsquerda = document.querySelector('#jogador-esquerda-cartas') ? document.querySelector('#jogador-esquerda-cartas').getBoundingClientRect().left : null;
+	const destinoJogadorTopo = document.querySelector('#jogador-topo-cartas') ? document.querySelector('#jogador-topo-cartas').getBoundingClientRect().bottom - 50 : null;
+	const destinoJogadorDireita = document.querySelector('#jogador-direita-cartas') ? document.querySelector('#jogador-direita-cartas').getBoundingClientRect().left : null;
+
+	// Criando um array para indicar a ordem de distribuição das cartas (sentido horário)
+	if (destinoJogadorPrincipal && destinoJogadorEsquerda && destinoJogadorTopo && destinoJogadorDireita) {
+		const listaCartas = document.querySelectorAll('.mesa__centro-cartas-monte');
+
+		if (listaCartas) {
+			let ordemJogadores = [
+				{ id: '#jogador-principal-cartas', destino: { top: destinoJogadorPrincipal }, horizontal: true },
+			];
+			
+			if(boxAtivo.esquerda){
+				ordemJogadores.push({ 
+					id: '#jogador-esquerda-cartas', 
+					destino: { left: destinoJogadorEsquerda }, 
+					horizontal: false })
+			}
+			
+			if(boxAtivo.topo){
+				ordemJogadores.push({ 
+					id: '#jogador-topo-cartas', 
+					destino: { top: destinoJogadorTopo }, 
+					horizontal: true })
+			}
+			
+			if(boxAtivo.direita){
+				ordemJogadores.push({ 
+					id: '#jogador-direita-cartas', 
+					destino: { left: destinoJogadorDireita }, 
+					horizontal: false })
+				
+			}
+			
+			// Controlador da quantidade de cartas que devem ser exibida no box dos jogadores
+			let cartasPorJogador = 1;
+
+			listaCartas.forEach((carta, index) => {
+				const jogadorIndex = index % ordemJogadores.length;
+				const jogador = ordemJogadores[jogadorIndex];
+				
+
+				setTimeout(() => {
+					
+					
+					
+
+					// Enviando cada carta para o box correspondente
+					if (jogador.destino.top !== undefined) {
+						if (jogador.id.includes("principal") || (jogador.id.includes("topo") && boxAtivo.topo)) {
+							carta.style.top = jogador.destino.top + 'px';
+
+						}
+
+					}
+					if (jogador.destino.left !== undefined) {
+						if ((jogador.id.includes("direita") && boxAtivo.direita) || (jogador.id.includes("esquerda") && boxAtivo.esquerda)) {
+							carta.style.left = jogador.destino.left + 'px';
+						}
+
+
+					}
+
+					setTimeout(() => {
+						// Posicionando as cartas do jogador
+						if (jogador.id.includes("principal") || (jogador.id.includes("topo") && boxAtivo.topo) || (jogador.id.includes("direita") && boxAtivo.direita) || (jogador.id.includes("esquerda") && boxAtivo.esquerda)) {
+							if (jogador.horizontal) {
+								posicionarCartasJogadoresHorizontal(jogador.id, cartasPorJogador);
+							} else {
+								posicionarCartasJogadoresVertical(jogador.id, cartasPorJogador);
+							}
+
+							carta.remove();
+
+						}
+
+						// Verifica se a primeira rodada de distribuição foi feita para passar para a próxima
+						if (jogadorIndex === (ordemJogadores.length - 1)) {
+							cartasPorJogador++;
+						}
+					}, 400);
+				}, index * 200);
+			});
+
+			setTimeout(() => {
+				montarMesa();
+
+			}, ((listaCartas.length + 1) * 200));
+
+		} else {
+			console.error('Não foi possível capturar o elemento ".mesa__centro-cartas-monte"');
+		}
+
+
+	} else {
+		console.error('Não foi possível capturar os destinos das cartas.');
+		console.log("Jogador principal: " + destinoJogadorPrincipal);
+		console.log("Jogador esquerda: " + destinoJogadorEsquerda);
+		console.log("Jogador topo: " + destinoJogadorTopo);
+		console.log("Jogador direita: " + destinoJogadorDireita);
+
+	}
+
+
+}
+
+
+/**
+ * Captura a montagem da mesa do backend e organiza visualmente.
+ * 
+ * @returns {void}
+ */
+function montarMesa() {
+	fetch('/partida/mesa')
+	.then(response => response.json())
+	.then(mesaCartas => {
+		const mesa = document.querySelector('.mesa__centro-cartas');
+
+		if(mesa){
+			mesa.innerHTML = mesa_montada;
+
+			// Controlador da linha da mesa
+			let posicao = 1;
+
+
+
+			Object.values(mesaCartas).forEach(linha => {
+				const cartaDireita = document.querySelector('#direita-' + posicao);
+				const cartaCentro = document.querySelector('#centro-' + posicao);
+				const cartaEsquerda = document.querySelector('#esquerda-' + posicao);
+				cartaDireita.src = './images/' + linha.ladoDireito[linha.ladoDireito.length - 1].urlImagem + '.png';
+				cartaDireita.id = cartaDireita.id + "--" + linha.cartaCoringa.cor;
+				cartaCentro.src = './images/' + linha.cartaCoringa.urlImagem + '.png';
+				cartaCentro.id = cartaCentro.id + "--" + linha.cartaCoringa.cor;
+				cartaEsquerda.src = './images/' + linha.ladoEsquerdo[linha.ladoEsquerdo.length - 1].urlImagem + '.png';
+				cartaEsquerda.id = cartaEsquerda.id + "--" + linha.cartaCoringa.cor;
+				posicao++;
+			})
+
+			iniciarAnimacao();
+
+		}else{
+			console.error('Não foi possível capturar o elemento ".mesa__centro-cartas".');
+		}
+
+
+	}).catch(error => {
+		console.error("Erro ao capturar a mesa:", error);
+	});
+
+
+}
+
+/**
+ * Organiza as cartas dos jogadores que estão na vertical.
+ * 
+ * @param {string} jogador - id do elemento HTML referente ao box do jogador.
+ * @param {number} quantidadeCartas - quantidade de cartas que devem ser exibidas no
+ * 									box do jogador
+ * @returns {void}
+ * 
+ * @example
+ * posicionarCartasJogadoresVertical("#jogador-principal-cartas", 8)
+ */
+function posicionarCartasJogadoresVertical(jogador, quantidadeCartas) {
+	
+	const cartasJogador = document.querySelector(jogador);
+
+	if(cartasJogador){
+		// Remove tudo que estava no box quando necessário antes de inserir novos elementos
+		const listaImagensAnteriores = document.querySelectorAll(jogador + ' img');
+		if (listaImagensAnteriores.length > 0) {
+			listaImagensAnteriores.forEach(img => {
+				img.remove()
+			})
+		}
+
+		// Posição do primeiro elemento
+		let posicaoInicial = -18;
+		const lateral = 18;
+		const altura = cartasJogador.offsetHeight;
+		let distanciaCartas = 0;
+
+		// Calculando a distância entre as cartas para que todas fiquem o mais identificáveis possível
+		if (quantidadeCartas > 1) {
+			distanciaCartas = (altura - 64) / (quantidadeCartas - 1) < 70 ? (altura - 64) / (quantidadeCartas - 1) : 70;
+		}
+
+
+
+		// Posicionando as cartas com a lateral fixa
+		for (let i = 0; i < quantidadeCartas; i++) {
+			const img = document.createElement('img');
+			img.src = "./images/fundo-carta.png";
+			img.classList.add("mesa__carta-jogadores");
+			img.classList.add("img--carta-vertical");
+			img.style.position = "absolute";
+			img.style.bottom = posicaoInicial + "px";
+			img.style.left = lateral + "px";
+			posicaoInicial = posicaoInicial + distanciaCartas;
+			cartasJogador.appendChild(img);
+		}
+
+	}else{
+		console.error("Não foi possível localizar o box do jogador: " + jogador);
+	}
+
+	
+
+}
+
+
+/**
+ * Organiza as cartas dos jogadores que estão na horizontal.
+ * 
+ * @param {string} jogador - id do elemento HTML referente ao box do jogador.
+ * @param {number} quantidadeCartas - quantidade de cartas que devem ser exibidas no
+ * 									box do jogador
+ * @returns {void}
+ * 
+ * @example
+ * posicionarCartasJogadoresHorizontal("#jogador-principal-cartas", 8)
+ */
+function posicionarCartasJogadoresHorizontal(jogador, quantidadeCartas) {
+
+	const cartasJogador = document.querySelector(jogador);
+
+	if(cartasJogador){
+		// Remove tudo que estava no box quando necessário antes de inserir novos elementos
+		const listaImagensAnteriores = document.querySelectorAll(jogador + ' img');
+		if (listaImagensAnteriores.length > 0) {
+			listaImagensAnteriores.forEach(img => {
+				img.remove()
+			})
+		}
+
+		// Posição do primeiro elemento
+		let posicaoInicial = 0;
+		const topo = 0;
+		const largura = cartasJogador.offsetWidth;
+		const distanciaCartas = (largura - 64) / (quantidadeCartas - 1) < 70 ? (largura - 64) / (quantidadeCartas - 1) : 70;
+
+		/** Salvando os identificadores das cartas do jogador principal para ser 
+		acessado se necessário
+		*/
+		const idCartas = Object.keys(todosJogadores[0].cartasNaMao);
+		let posicaoImagem = 0;
+
+
+		// Posicionando as cartas com o topo fixo
+		for (let i = 0; i < quantidadeCartas; i++) {
+			const img = document.createElement('img');
+
+			/**
+			 * Se a solicitaçaõ de organização for das cartas do jogador principal, deve ser exibida a 
+			 * imagem referente a carta e não o fundo
+			 * */
+			if (jogador.includes('principal')) {
+				let id = idCartas[posicaoImagem];
+				img.src = './images/' + todosJogadores[0].cartasNaMao[id].urlImagem + '.png';
+				img.id = id;
+				img.onclick = () => selecionarCarta(img);
+				img.draggable = "true";
+				posicaoImagem++;
+
+			} else {
+				img.src = "./images/fundo-carta.png";
+
+			}
+
+			img.classList.add("mesa__carta-jogadores");
+			img.classList.add("img--carta-horizontal");
+			img.style.position = "absolute";
+			img.style.top = topo + "px";
+			img.style.left = posicaoInicial + "px";
+			posicaoInicial = posicaoInicial + distanciaCartas;
+			cartasJogador.appendChild(img);
+
+
+		}
+	}else{
+		console.error("Não foi possível localizar o box do jogador: " + jogador);
+	}
+
+	
+
+}
+
+/**
+ * Destaca a carta clicada pelo usuário.
+ * 
+ * @param {HTMLImageElement} carta - elemento que sofreu a ação
+ * @returns {void}
+ */
+function selecionarCarta(carta) {
+
+	if (!carta.classList.contains('carta--selecionada')) {
+		const listaCartas = document.querySelectorAll('#jogador-principal-cartas img');
+		listaCartas.forEach(cartaAtual => {
+			if (cartaAtual.classList.contains('carta--selecionada')) {
+				cartaAtual.classList.remove('carta--selecionada')
+			}
+		});
+
+		carta.classList.add('carta--selecionada');
+	} else {
+		carta.classList.remove('carta--selecionada');
+	}
+
+
+
+
+
+}
+
+/**
+ * Permite arrastar os elementos.
+ * 
+ * @param {DragEvent} event - Evento que permite o objeto ser arrastado.
+ * @returns {void}
+ */
+function allowDrop(event) {
+	if (!bloquearJogadorPrincipal) {
+		event.preventDefault();
+	}
+
+}
+
+/**
+ * Ação quando o objeto é arrastado.
+ * 
+ * @param {DragEvent} event - Evento de arrastar.
+ * @returns {void}
+ */
+function drag(event) {
+	if (!bloquearJogadorPrincipal) {
+		event.dataTransfer.setData("text", event.target.id);
+	}
+
+}
+
+/**
+ * Ação para "colar" o elemento na "caixa" onde ele foi solto e remover o item do box
+ * de cartas do jogador principal.
+ * 
+ * @param {DragEvent} event - Evento de "jogar" o elemento.
+ * @returns {void}
+ */
+function drop(event) {
+	if (!bloquearJogadorPrincipal) {
+		event.preventDefault();
+
+		// Captura o HTML do objeto arrastado e tenta extrair o id
+		const objetoHTML = event.dataTransfer.getData("text/html");
+		const regexID = objetoHTML.match(/id="(\d+)"/);
+
+		if (regexID && regexID[1]) {
+			const id = regexID[1];
+			const elementoArrastado = document.getElementById(id);
+
+			if(elementoArrastado){
+				// Capturando a informação de cor no elemento
+				const regexCorElemento = elementoArrastado.src.match(/card-([a-z]+)-\d+\.png/i);
+				const regexCorSlot = event.target.id.match(/--([a-z]+)/i);
+
+
+				if (regexCorElemento[1] === regexCorSlot[1]) {
+					registrarJogada(id, regexCorSlot.input);
+					const linkImagem = event.dataTransfer.getData("text");
+
+					// Atualizando a imagem do elemento para onde a carta foi arrastada
+					event.target.src = linkImagem;
+					elementoArrastado.remove();
+
+					// Reposicionando as cartas depois do descarte
+					let cartasRestantes = Object.keys(jogadorAtual.cartasNaMao).length;
+					posicionarCartasJogadoresHorizontal('#jogador-principal-cartas', cartasRestantes);
+				}else{
+					console.error("Não foi possível extrair a cor da carta: " + regexCorSlot);
+				}
+
+
+			}else{
+				console.error("Não foi possível extrair o ID da carta: " + regexID);
+			}
+
+		}else{
+			console.error("Não foi possível encontrar o elemento: " + id);
+		}
+
+
+
+
+	}
+
+}

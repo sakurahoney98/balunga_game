@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Balunga!</title>
+	<link rel="stylesheet" type="text/css" href="./css/index.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+	<link  id= "style-regras" rel="stylesheet" type="text/css" href="">
+	<script src="./script/regras.js"></script>
+	<script src="./script/escolher-jogadores.js"></script>
+	
+</head>
+<body>
+
+	<div class="painel">
+		<div class="painel__botoes">
+			<button class="painel__botoes-btn btn--jogar" onclick="play()">
+				<i class="fas fa-play"></i>
+				Jogar
+			</button>
+			<button class="painel__botoes-btn btn--regras" onclick="abrirRegras()">
+				<i class="fas fa-book"></i>
+				Regras
+			</button>
+		</div>
+		
+	</div>
+
+	<script>
+		function play(){
+			document.querySelector('#style-regras').href = './css/escolher-jogadores.css';
+			const wrapper = document.createElement('div');
+			wrapper.innerHTML = modal_escolher_jogadores;
+			document.body.appendChild(wrapper.firstElementChild);
+		}
+		function abrirRegras(){
+			document.querySelector('#style-regras').href = './css/regras.css';
+			const wrapper = document.createElement('div');
+			wrapper.innerHTML = modal_regras;
+			document.body.appendChild(wrapper.firstElementChild);
+		}
+		
+	</script>
+
+</body>
+</html>

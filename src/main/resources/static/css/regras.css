@@ -1,0 +1,139 @@
+
+/* Animação */
+@keyframes zoomIn {
+	to {
+		transform: scale(1);
+		opacity: 1;
+	}
+}
+
+@keyframes fadeOut {
+	from {
+		opacity: 1;
+	}
+	to{
+		opacity: 0;
+
+	}
+}
+
+/* Fonte */
+
+@font-face{
+	font-family: 'Fredoka';
+	src: url('../font/Fredoka-Regular.ttf');
+	font-style: normal;
+}
+
+
+/* Elementos */
+html, body{
+	margin: 0;
+	width: 100%;
+	height: 100%;
+	box-sizing: border-box;
+}
+
+.painel-regras{
+	width: 100%;
+	height: 100%;
+	box-sizing: border-box;
+	display: flex;
+	padding: 32px;
+	align-items: center;
+	justify-content: center;
+	background: rgba(128, 128, 128, 0.5);
+	position: fixed;
+	top: 0;
+	left: 0;
+	z-index: 9999;
+
+}
+.painel-regras__modal{
+	background: #EFDEC6;
+	border: solid 5px #1E1D1B ;
+	height: 560px;
+	width: 700px;
+	border-radius: 20px;
+	transform: scale(0.8);
+	opacity: 0;
+	animation: zoomIn 0.5s ease forwards;
+	padding: 16px;
+	font-family: 'Fredoka';
+	box-sizing: border-box;
+	display: flex;
+	flex-direction: column;
+
+
+}
+
+.painel-regras__modal-cabecalho {
+	display: flex;
+	justify-content: flex-end;
+	padding-bottom: 8px;
+}
+
+.painel-regras__modal-cabecalho-btn {
+	background: transparent;
+	border: none;
+	font-size: 24px;
+	cursor: pointer;
+	color: #1E1D1B;
+	padding: 4px 8px;
+	transition: color 0.3s ease;
+
+}
+
+.painel-regras__modal-cabecalho-btn::before {
+	content: "✖";  
+	display: inline-block;
+}
+
+.painel-regras__modal-cabecalho-btn:hover {
+	color: #FF5526; 
+}
+
+.painel-regras__modal-titulo{
+	padding: 8px 0px;
+	display: flex;
+	justify-content: center;
+	font-weight: bold;
+	color: #1E1D1B;
+	font-size: 20px;
+	flex-shrink: 0;
+
+}
+
+.painel-regras__modal-texto{
+	flex-grow: 1;      
+	overflow-y: auto;  
+	display: flex;
+	flex-direction: column;
+	gap: 20px;         
+	padding: 16px;
+	box-sizing: border-box;
+}
+
+.painel-regras__modal-texto-item{
+	border: solid 3px #05A895;
+	border-radius: 10px;
+	background: white;
+	padding: 8px;
+
+}
+
+.painel-regras__modal-texto-item-titulo{
+	color: #05A895;
+	font-size: 20px;
+	font-weight: bold;
+	margin-bottom: 4px;
+}
+
+.painel-regras__modal-texto-item-conteudo{
+	color: #1E1D1B;
+
+}
+
+.efeito--fade-out{
+	animation: fadeOut 0.3s ease forwards;
+}

@@ -1,0 +1,23 @@
+services:
+  web:
+    container_name: balunga_local
+    restart: unless-stopped
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - .:/app
+    ports:
+      - "${HOST_PORT}:${VIRTUAL_PORT}"  # Ex: 8080:8080
+    command: java -jar /app/target/balunga.jar
+    deploy:
+      resources:
+        limits:
+          cpus: "${LIMIT_CPU}"
+          memory: "${LIMIT_MEM}"
+    networks:
+      - default
+
+networks:
+  default:
+    name: "${NETWORK}"

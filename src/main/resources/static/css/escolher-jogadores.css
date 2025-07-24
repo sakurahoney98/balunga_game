@@ -1,0 +1,154 @@
+
+/* Animação */
+@keyframes zoomIn {
+	to {
+		transform: scale(1);
+		opacity: 1;
+	}
+}
+
+@keyframes fadeOut {
+	from {
+		opacity: 1;
+	}
+	to{
+		opacity: 0;
+
+	}
+}
+
+
+/* Fonte */
+@font-face{
+	font-family: 'Fredoka';
+	src: url('../font/Fredoka-Regular.ttf');
+	font-style: normal;
+}
+
+
+/* Elementos */
+
+html, body{
+	margin: 0;
+	width: 100%;
+	height: 100%;
+	box-sizing: border-box;
+}
+
+.painel-regras{
+	width: 100%;
+	height: 100%;
+	box-sizing: border-box;
+	display: flex;
+	padding: 32px;
+	align-items: center;
+	justify-content: center;
+	background: rgba(128, 128, 128, 0.5);
+	position: fixed;
+	top: 0;
+	left: 0;
+	z-index: 9999;
+
+}
+.painel-regras__modal{
+	background: #EFDEC6;
+	border: solid 5px #1E1D1B ;
+	height: 360px;
+	width: 600px;
+	border-radius: 20px;
+	transform: scale(0.8);
+	opacity: 0;
+	animation: zoomIn 0.5s ease forwards;
+	padding: 16px;
+	font-family: 'Fredoka';
+	box-sizing: border-box;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+
+
+}
+
+
+.painel-regras__modal-titulo{
+	padding: 8px 0px 8px 40px;
+	font-weight: bold;
+	color: #1E1D1B;
+	font-size: 20px;
+
+
+
+}
+
+.painel-regras__modal-opcao{
+
+	display: flex;
+	gap: 20px;         
+	padding: 16px;
+	box-sizing: border-box;
+	flex-wrap: wrap;
+	justify-content: center;
+
+}
+
+.painel-regras__modal-opcao-btn{
+	border: solid 2px;
+	height: 60px;
+	width: 120px;
+	border-radius: 10px;
+	font-size: 16px;
+	cursor: pointer;
+}
+
+.painel-regras__modal-opcao-btn:hover {
+	background-color: #1E1D1B;
+	color: #FF5526; 
+	transform: scale(1.2);
+	box-shadow:
+	8px 8px 16px rgba(0, 0, 0, 0.3),
+	-3px -3px 6px rgba(0, 0, 0, 0.1);
+}
+
+
+
+.efeito--fade-out{
+	animation: fadeOut 0.3s ease forwards;
+}
+
+.btn--selecionado{
+	background-color: #1E1D1B;
+	color: #FF5526; 
+}
+
+.painel-regras__modal-acao{
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: 20px 40px;
+
+}
+
+.painel-regras__modal-acao-btn{
+	border: solid 2px;
+	height: 40px;
+	width: 140px;
+	border-radius: 10px;
+	font-size: 20px;
+	cursor: pointer;
+}
+
+.btn--ok{
+	background-color:#05A895;
+	color: white; 
+}
+
+.btn--voltar{
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.painel-regras__modal-acao-btn.btn--voltar i {
+	font-size: 20px;
+	margin-right: 8px;
+}

@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Play</title>
+<link
+	href="https://fonts.googleapis.com/css2?family=Bangers&display=swap"
+	rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="./css/mesa-jogo.css">
+<link rel="stylesheet" type="text/css" href="./css/faixa.css">
+<link rel="stylesheet" type="text/css" href="./css/balunga.css">
+<script src="./script/montar-mesa.js"></script>
+
+
+</head>
+<body>
+
+	<div class="mesa">
+		<div class="mesa__posicao posicao--topo">
+			<div class="mesa__posicao-lugar-horizontal">
+
+				<div
+					class="mesa__posicao-jogador div--jogador-topo posicao--horizontal"
+					id="jogador-topo-cartas"></div>
+				<div class="mesa__posicao-jogador-label label--jogador-topo"
+					id="jogador-topo-label"></div>
+			</div>
+
+		</div>
+		<div class="mesa__posicao posicao--meio">
+			<div class="mesa__posicao-lugar-vertical">
+
+				<div
+					class="mesa__posicao-jogador div--jogador-esquerda posicao--vertical"
+					id="jogador-esquerda-cartas"></div>
+				<div
+					class="mesa__posicao-jogador-label  label--jogador-esquerda posicao-label--esquerda"
+					id="jogador-esquerda-label"></div>
+			</div>
+			<div class="mesa__centro-cartas"></div>
+			<div class="mesa__posicao-lugar-vertical">
+				<div
+					class="mesa__posicao-jogador-label  label--jogador-direita posicao-label--direita"
+					id="jogador-direita-label"></div>
+				<div class="mesa__posicao-jogador div--jogador-2 posicao--vertical"
+					id="jogador-direita-cartas"></div>
+
+			</div>
+
+		</div>
+		<div class="mesa__posicao posicao--base ">
+			<div class="mesa__posicao-lugar-horizontal">
+				<div class="mesa__posicao-jogador-label jogador--ativo"
+					id="jogador-principal-label">Jogador 1</div>
+				<div
+					class="mesa__posicao-jogador div--jogador-1 posicao--horizontal  label--jogador-principal"
+					id="jogador-principal-cartas"></div>
+			</div>
+		</div>
+
+
+	</div>
+	<script src="./script/montar-mesa-preparacao.js"></script>
+	<script src="./script/montar-mesa-funcoes.js"></script>
+	<script src="./script/controlador.js"></script>
+
+	<script>
+		iniciarPreparacao();
+		montarCava();
+		capturarJogadorAtual();
+		listaJogadores();
+
+		
+		
+		
+	</script>
+
+</body>
+</html>
