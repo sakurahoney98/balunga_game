@@ -37,7 +37,7 @@ ATodos os tipos de contribuição são bem-vindos e valorizados. Veja o [Índice
 
 
 
-## 💡 Tipos de Contribuição
+## Tipos de Contribuição
 
 Você pode contribuir de várias formas:
 
