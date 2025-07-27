@@ -3,7 +3,7 @@
 ![banner-balunga](https://github.com/sakurahoney98/balunga_game/blob/main/src/main/resources/static/images/background-home.png?raw=true)
 
 # Balunga
-![Status](https://img.shields.io/badge/status-finalizado-gree) ![Versão](https://img.shields.io/badge/vers%C3%A3o-0.0.1--SNAPSHOT-blue) ![License](https://img.shields.io/badge/licen%C3%A7a-Apache-yellow)
+![Status](https://img.shields.io/badge/status-finalizado-gree) ![Versão](https://img.shields.io/badge/vers%C3%A3o-0.0.1--SNAPSHOT-blue) ![License](https://img.shields.io/badge/licen%C3%A7a-Apache_License_2.0-yellow)
 
 Balunga é um jogo web de cartas estratégico desenvolvido em Java com Spring Boot. O sistema simula partidas com jogadores humanos e automatizados, controlando todas as regras, turnos, distribuição de cartas, penalidades e descartes.
 
