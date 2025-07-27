@@ -56,7 +56,7 @@ Antes de abrir uma dúvida, recomendamos procurar nas [issues existentes](https:
 
 Se ainda assim precisar de ajuda, siga estas orientações:
 
-- Abra uma [nova issue](https://github.com/sakurahoney98/balunga_game.git/issues/new).
+- Abra uma [nova issue](https://github.com/sakurahoney98/balunga_game/issues/new).
 - Descreva o máximo de contexto possível sobre o que está acontecendo.
 - Informe as versões utilizadas (Java, Docker, sistema operacional etc.), conforme for relevante.
 
@@ -90,7 +90,7 @@ Um bom relatório de bug deve ser claro e detalhado, para que possamos reproduzi
 
 Para relatar um bug:
 
-- Abra uma [nova issue](https://github.com/sakurahoney98/balunga_game.git/issues/new).
+- Abra uma [nova issue](https://github.com/sakurahoney98/balunga_game/issues/new).
 - Descreva o comportamento esperado e o que ocorreu de fato.
 - Inclua um passo a passo para que outras pessoas consigam reproduzir o erro.
 - Envie todas as informações que reuniu na etapa anterior.
@@ -103,7 +103,7 @@ Para relatar um bug:
 
 - Verifique se está usando a última versão.
 - Confira a [documentação](https://github.com/sakurahoney98/balunga_game/tree/53d047b8b8c4db8ceb4a89c2e8290422464e2e6c/docs)  para garantir que sua sugestão ainda não foi contemplada.
-- Pesquise nas [issues](https://github.com/sakurahoney98/balunga_game.git/issues) se a sugestão já foi feita. Se sim, comente nela em vez de criar uma nova.
+- Pesquise nas [issues](https://github.com/sakurahoney98/balunga_game/issues) se a sugestão já foi feita. Se sim, comente nela em vez de criar uma nova.
 - Avalie se a ideia está alinhada com o propósito do projeto. Foque em soluções úteis para a maioria dos usuários, não apenas para um caso muito específico.
 
 #### Como eu envio uma sugestão?
@@ -120,12 +120,12 @@ Para relatar um bug:
 
 - Verifique se está usando a última versão.
 - Confira a [documentação](https://github.com/sakurahoney98/balunga_game/tree/53d047b8b8c4db8ceb4a89c2e8290422464e2e6c/docs)  para garantir que sua sugestão ainda não foi contemplada.
-- Pesquise nas [issues](https://github.com/sakurahoney98/balunga_game.git/issues) se a sugestão já foi feita. Se sim, comente nela em vez de criar uma nova.
+- Pesquise nas [issues](https://github.com/sakurahoney98/balunga_game/issues) se a sugestão já foi feita. Se sim, comente nela em vez de criar uma nova.
 
 #### Como inicio uma alteração?
 
 1. Crie uma issue
-- Abra uma [nova issue](https://github.com/sakurahoney98/balunga_game.git/issues/new) descrevendo:
+- Abra uma [nova issue](https://github.com/sakurahoney98/balunga_game/issues/new) descrevendo:
   - O que pretende resolver ou implementar
   - O comportamento atual e o comportamento desejado
 - Justifique por que a mudança é relevante
