@@ -1,10 +1,8 @@
 ---
-name: Sugerir Funcionalidade
+name: ✨ Sugestão de Funcionalidade
 about: Sugira uma nova funcionalidade para o projeto
-title: "[FEATURE]"
+title: "[MELHORIA] "
 labels: enhancement
-assignees: ''
-
 ---
 
 **Sua sugestão está relacionada a um problema?**
