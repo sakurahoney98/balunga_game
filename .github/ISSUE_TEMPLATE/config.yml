@@ -10,12 +10,12 @@ issue_templates:
     title: "[BUG] "
     labels: ["bug"]
     body: "relatar-bug.md"
-  - name: ✨ Nova Funcionalidade
+  - name: "✨ Nova Funcionalidade"
     about: "Sugira uma melhoria"
     title: "[MELHORIA] "
     labels: ["enhancement"]
     body: "sugerir-funcionalidade.md"
-  - name: ❓ Dúvida
+  - name: "❓ Dúvida"
     about: "Faça uma pergunta"
     title: "[DÚVIDA] "
     labels: ["question"]
