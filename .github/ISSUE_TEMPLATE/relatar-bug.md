@@ -1,10 +1,8 @@
 ---
-name: Relatar Bug
-about: Descreva um erro que você encontrou
-title: "[BUG]"
+name: 🐞 Relatar Bug
+about: Reporte um bug ou problema encontrado
+title: "[BUG] "
 labels: bug
-assignees: ''
-
 ---
 
 **Descrição do bug**
