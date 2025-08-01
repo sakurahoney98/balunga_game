@@ -1,6 +1,6 @@
 blank_issues_enabled: false
 contact_links: []
-issue_templates:
+issue_template:
   - name: 🐞 Relatar um Bug
     file: relatar-bug.md
   - name: ✨ Nova Funcionalidade
