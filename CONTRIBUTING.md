@@ -3,7 +3,7 @@
 
 Antes de tudo, obrigado por dedicar um tempo para contribuir! ❤️
 
-ATodos os tipos de contribuição são bem-vindos e valorizados. Veja o [Índice](#índice) para descobrir diferentes formas de ajudar e detalhes sobre como lidamos com cada tipo de contribuição. Leia a seção correspondente antes de enviar sua colaboração. Isso facilita bastante o trabalho de quem mantém o projeto e melhora a experiência para todos os envolvidos. A comunidade agradece a sua participação! 🎉
+Todos os tipos de contribuição são bem-vindos e valorizados. Veja o [Índice](#índice) para descobrir diferentes formas de ajudar e detalhes sobre como lidamos com cada tipo de contribuição. Leia a seção correspondente antes de enviar sua colaboração. Isso facilita bastante o trabalho de quem mantém o projeto e melhora a experiência para todos os envolvidos. A comunidade agradece a sua participação! 🎉
 
 > E se você curtiu o projeto mas está sem tempo para contribuir, tudo bem! Há outras formas simples de apoiar o projeto e demonstrar sua apreciação, o que também nos deixa muito felizes:
 
@@ -75,7 +75,7 @@ Responderemos o mais rápido possível. 💬
 Um bom relatório de bug deve ser claro e detalhado, para que possamos reproduzir e corrigir o problema. Siga estas etapas antes de enviar:
 
 - Verifique se está usando a versão mais recente do projeto.
-- Certifique-se de que o problema não está relacionado ao seu ambiente (versões incompatíveis, configurações, etc.). Leia a [docuemntação](https://github.com/sakurahoney98/balunga_game/tree/53d047b8b8c4db8ceb4a89c2e8290422464e2e6c/docs) e, se necessário, veja a seção [Tenho uma dúvida](#tenho-uma-dúvida).
+- Certifique-se de que o problema não está relacionado ao seu ambiente (versões incompatíveis, configurações, etc.). Leia a [documentação](https://github.com/sakurahoney98/balunga_game/tree/53d047b8b8c4db8ceb4a89c2e8290422464e2e6c/docs) e, se necessário, veja a seção [Tenho uma dúvida](#tenho-uma-dúvida).
 - Veja se já existe uma issue para o problema no [rastreador de bug](https://github.com/sakurahoney98/balunga_game.git/issues?q=label%3Abug).
 - Reúna informações como:
   - Stack trace (erro completo)
