@@ -1,12 +1,3 @@
----
-name: Relatar Bug
-about: Descreva um erro que você encontrou
-title: "[BUG]"
-labels: bug
-assignees: ''
-
----
-
 **Descrição do bug**
 Uma descrição clara e concisa do problema.
 
