@@ -2,9 +2,8 @@ blank_issues_enabled: false
 contact_links: []
 issue_templates:
   - name: 🐞 Relatar um Bug
-    file: relatar-bug.md
+    file: bug_report.md
   - name: ✨ Nova Funcionalidade
-    file: sugerir-funcionalidade.md
+    file: feature_request.md
   - name: ❓ Dúvida
-    file: tenho-uma-pergunta.md
-
+    file: question.md
