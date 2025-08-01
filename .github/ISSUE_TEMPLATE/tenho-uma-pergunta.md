@@ -1,10 +1,8 @@
 ---
-name: Tenho uma Pergunta
+name: ❓ Dúvida
 about: Tire uma dúvida sobre o projeto
-title: "[DÚVIDA]"
+title: "[DÚVIDA] "
 labels: question
-assignees: ''
-
 ---
 
 **Pergunta**
